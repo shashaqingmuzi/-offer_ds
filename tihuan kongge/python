@@ -1,0 +1,29 @@
+#思路：参考剑指offer
+# -*- coding:utf-8 -*-
+class Solution:
+    # s 源字符串
+    def replaceSpace(self, s):
+        # write code here
+        if not s:
+            return ""
+        
+        old_len = len(s)
+        count_space = 0
+        for i in s:
+            if i == " ":
+                count_space += 1
+        new_len = old_len + count_space*2
+        new_str = [0]*new_len
+        old_ind = old_len - 1
+        new_ind = new_len - 1
+        while(old_ind >= 0):
+            if s[old_ind] == ' ':
+                new_str[new_ind] = '0'
+                new_str[new_ind - 1] = '2'
+                new_str[new_ind - 2] = '%'
+                new_ind -= 3
+            else:
+                new_str[new_ind] = s[old_ind]
+                new_ind -= 1
+            old_ind -= 1
+        return "".join('%s' % id for id in new_str)
